@@ -5,11 +5,15 @@
 
 <html>
 <head>
-    <title>title</title>
+    <title>Found Product - {@Model.Id}</title>
 </head>
 <body>
-<div>
-      
-</div>
+    <div>
+        Id: @Model.Id
+        @if (@Model.Barcode != "")
+        {
+            @Model.Barcode;
+        }
+    </div>
 </body>
 </html>
