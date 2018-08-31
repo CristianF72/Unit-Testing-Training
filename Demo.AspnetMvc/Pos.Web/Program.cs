@@ -5,8 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Pos.DataAccess;
+using Pos.DataAccess.Model;
 
 namespace Pos.Web
 {
@@ -15,6 +18,8 @@ namespace Pos.Web
         public static void Main(string[] args)
         {
             BuildWebHost(args).Run();
+
+            
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

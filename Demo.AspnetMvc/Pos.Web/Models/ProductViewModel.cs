@@ -1,8 +1,9 @@
 ﻿namespace Pos.Web.Models
+
 {
     public class ProductViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string Barcode { get; set; }
 

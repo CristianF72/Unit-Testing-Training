@@ -1,19 +1,47 @@
-﻿@using Pos.Web.Models
-@model ProductViewModel
+﻿@using Pos.DataAccess.Model
+
+
+@model List<Product>
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>Found Product - {@Model.Id}</title>
+    <title>Found Product - {@Model}</title>
 </head>
 <body>
     <div>
-        Id: @Model.Id
-        @if (@Model.Barcode != "")
-        {
-            @Model.Barcode;
-        }
+        Urmatoarele produse au fost gasite, detaliile acestora sunt:
+
+        <table style="width:100%">
+            <tr>
+                <th>Id</th>
+                <th>Barcode</th>
+                <th>CatalogCode</th>
+                <th>CatalogName</th>
+                <th>Price</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                @if (item != null)
+                {
+                    <td>@item.ProductId</td>
+                    <td>@item.Barcode</td>
+                    <td>@item.CatalogCode</td>
+                    <td>@item.CatalogName</td>
+                    <td>@item.Price</td>;
+                }
+            </tr>
+                }
+                
+            </table>
+
+       
+        @ViewBag.MuiePSD
+        @ViewData["XYZ"]
+
     </div>
 </body>
 </html>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Pos.DataAccess.Model;
+using Pos.DataAccess.Repositories;
 using Pos.Web.Models;
 
 namespace Pos.Web.Controllers
@@ -11,9 +13,11 @@ namespace Pos.Web.Controllers
     {
         public IActionResult Details(string barcode)
         {
-            var product = new ProductViewModel { Id = "test"};
-
-            return View(product);
+            if (barcode == "")
+            {
+                return NotFound();
+            }
+            return View(ProductsRepository.getProductsList());
         }
 
         //public JsonResult ApiDetails(string barcode)
