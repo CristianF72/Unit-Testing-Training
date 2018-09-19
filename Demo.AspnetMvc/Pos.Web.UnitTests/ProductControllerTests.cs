@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Pos.DataAccess.Model;
 using Pos.DataAccess.Repositories;
 using Pos.Web.Controllers;
@@ -28,13 +29,31 @@ namespace Pos.Web.UnitTests
         [TestMethod]
         public void Details_ProductExists_PriceHasCurrencySymbol()
         {
-            Assert.Fail("Not yet implemented");
+            string barcode = "some product barcode";
+            string currency = "$";
+            Product productTestData = new Product { CatalogCode = "some code" };
+
+            IProductRepository repository = new ProductRepositoryDouble(productTestData);
+            ProductController target = new ProductController(repository);
+
+            var actionResult = target.Details(barcode);
+
+            ProductViewModel vm = actionResult.GetViewModel<ProductViewModel>();
+            Assert.IsTrue(vm.Price.Contains(currency));
         }
 
         [TestMethod]
         public void Details_BarcodeWithUppercase_RepositoryIsCalledWithLowercaseBarcode()
         {
-            Assert.Fail("Not yet implemented");
+            string barcode = "  SOME PRODUCT BARCODE ";
+            Product productTestData = new Product { CatalogCode = "some code" };
+            Mock<IProductRepository> _repository = new Mock<IProductRepository>();
+            _repository.Setup(r => r.GetProduct(productTestData.CatalogCode) );
+            ProductController target = new ProductController(_repository.Object);
+
+            var actionResult = target.Details(barcode);
+
+            _repository.Verify(r => r.GetProduct(barcode));
         }
     }
 

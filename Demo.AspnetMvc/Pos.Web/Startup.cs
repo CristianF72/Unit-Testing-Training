@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Pos.DataAccess.Repositories;
 
 namespace Pos.Web
 {
@@ -22,6 +23,7 @@ namespace Pos.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            //services.AddScoped(typeof(IProductRepository));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

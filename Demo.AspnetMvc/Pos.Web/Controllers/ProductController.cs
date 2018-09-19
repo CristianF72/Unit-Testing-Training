@@ -20,13 +20,6 @@ namespace Pos.Web.Controllers
 
         public IActionResult Details(string barcode)
         {
-<<<<<<< HEAD
-            if (barcode == "")
-            {
-                return NotFound();
-            }
-            return View(ProductsRepository.getProductsList());
-=======
             string code = barcode.Trim().ToLowerInvariant();
             Product p = repository.GetProduct(code);
 
@@ -38,7 +31,6 @@ namespace Pos.Web.Controllers
             };
 
             return View(vm);
->>>>>>> origin/demo/pos-mvc
         }
 
         //public JsonResult ApiDetails(string barcode)
