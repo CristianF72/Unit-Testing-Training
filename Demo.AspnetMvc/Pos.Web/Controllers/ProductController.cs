@@ -11,13 +11,34 @@ namespace Pos.Web.Controllers
 {
     public class ProductController : Controller
     {
+        private readonly IProductRepository repository;
+
+        public ProductController(IProductRepository repository)
+        {
+            this.repository = repository;
+        }
+
         public IActionResult Details(string barcode)
         {
+<<<<<<< HEAD
             if (barcode == "")
             {
                 return NotFound();
             }
             return View(ProductsRepository.getProductsList());
+=======
+            string code = barcode.Trim().ToLowerInvariant();
+            Product p = repository.GetProduct(code);
+
+            ProductViewModel vm = new ProductViewModel
+            {
+                Code = p.CatalogCode,
+                Name = p.CatalogName,
+                Price = $"{p.Price} $"
+            };
+
+            return View(vm);
+>>>>>>> origin/demo/pos-mvc
         }
 
         //public JsonResult ApiDetails(string barcode)
