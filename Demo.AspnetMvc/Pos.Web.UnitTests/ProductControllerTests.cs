@@ -48,12 +48,12 @@ namespace Pos.Web.UnitTests
             string barcode = "  SOME PRODUCT BARCODE ";
             Product productTestData = new Product { CatalogCode = "some code" };
             Mock<IProductRepository> _repository = new Mock<IProductRepository>();
-            _repository.Setup(r => r.GetProduct(productTestData.CatalogCode) );
+            _repository.Setup(r => r.GetProduct(barcode.Trim().ToLower())).Returns(productTestData);
             ProductController target = new ProductController(_repository.Object);
 
             var actionResult = target.Details(barcode);
 
-            _repository.Verify(r => r.GetProduct(barcode));
+            _repository.Verify(r => r.GetProduct(barcode.Trim().ToLower()));
         }
     }
 

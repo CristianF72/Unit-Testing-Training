@@ -27,7 +27,8 @@ namespace Pos.Web.Controllers
             {
                 Code = p.CatalogCode,
                 Name = p.CatalogName,
-                Price = $"{p.Price} $"
+                Price = $"{p.Price} $",
+                Vta = $"{p.Vta} $"
             };
 
             return View(vm);
