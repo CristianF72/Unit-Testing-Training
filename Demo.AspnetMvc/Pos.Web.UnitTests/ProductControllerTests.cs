@@ -108,7 +108,8 @@ namespace Pos.Web.UnitTests
             Product productTestData = new Product {CatalogCode = "some code"};
 
             IProductRepository repository = new ProductRepositoryDouble(productTestData);
-            ProductController target = new ProductController(repository);
+            IProductRepository priceCalculator = new ProductRepositoryDouble(productTestData);
+            ProductController target = new ProductController(repository, priceCalculator);
 
 
             var actionResult = target.Details(barcode);
@@ -148,21 +149,6 @@ namespace Pos.Web.UnitTests
         }
     }
 
-    class ProductRepositoryDouble : IProductRepository
-    {
-        private readonly Product product;
-
-        public ProductRepositoryDouble(Product product)
-        {
-            this.product = product;
-        }
-
-        public Product GetProductByBarcode(string barcode)
-        {
-            return product;
-        }
-    }
-}
     class ProductRepositoryDouble : IProductRepository
     {
         private readonly Product product;

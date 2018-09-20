@@ -23,12 +23,10 @@ namespace Pos.Web.Controllers
             this.priceCalculator = priceCalculator;
         }
 
-        private readonly IProductRepository repository;
-
-        public ProductController(IProductRepository repository)
-        {
-            this.repository = repository;
-        }
+        //public ProductController(IProductRepository repository)
+        //{
+        //    this.repository = repository;
+        //}
 
         public IActionResult Details(string barcode)
         {
