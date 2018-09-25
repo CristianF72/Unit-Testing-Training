@@ -33,15 +33,20 @@ namespace Pos.Web.Controllers
             string code = barcode.Trim().ToLowerInvariant();
             Product p = repository.GetProduct(code);
 
+
             ProductViewModel vm;
             if (p != null)
             {
                 decimal price = priceCalculator.GetPrice(p);
+                decimal Price = 0;
+                decimal vtaValue = 1.19m;
+                decimal vta = priceCalculator.GetPrice(p) * vtaValue;
                 vm = new ProductViewModel
                 {
                     Code = p.CatalogCode,
                     Name = p.CatalogName,
                     Price = $"{price} $",
+                    Vta = $"{vta} $",  
                 };
             }
             else

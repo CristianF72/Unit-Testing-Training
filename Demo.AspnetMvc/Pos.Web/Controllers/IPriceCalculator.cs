@@ -5,5 +5,7 @@ namespace Pos.Web.Controllers
     public interface IPriceCalculator
     {
         decimal GetPrice(Product product);
+
+        decimal GetVta(Product product);
     }
 }
